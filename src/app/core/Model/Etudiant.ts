@@ -1,5 +1,5 @@
 import { Contrat } from "./Contrat";
-import { Departement } from "./Departement";
+import { Department } from "./Department";
 import { Equipe } from "./Equipe";
 import { Option } from "./Option";
 
@@ -8,7 +8,7 @@ export class Etudiant {
     nomE : String ;
     prenomE : String ;
     options:Option;
-    departement:Departement;
+    department:Department;
     contrats:Contrat;
     equipes:Equipe
 }

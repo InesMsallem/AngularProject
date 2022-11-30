@@ -1,0 +1,48 @@
+<div id="content" #content> 
+  <h1>List Department</h1>
+  <input
+  type="number"
+  aria-labelledby="temperature low"
+  #myInput
+  [(ngModel)]="idDepart"
+  (input)="recherche(idDepart)"
+/>
+  <a class="btn btn-sm btn-warning" (click)="toadd()">
+      Add Department  
+  </a>
+  <table class="table">
+      <thead>
+          <tr>
+             <th>ID</th>
+              <th>Nom Department</th>
+              <th>Code</th>
+              <th>type</th>
+              <th>description</th>
+              <th>action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let u of listdepartments">
+              <td>{{u.idDepart}}</td>
+              <td>{{u.nomDepart }}</td>
+              <td> {{u.code}}</td>
+              <td> {{u.type}} </td>
+              <td> {{u.description}}</td>
+              <td>
+                  <button class="btn btn-sm btn-danger" (click)="deletedepartment(u.idDepart)" >
+                      delete
+                  </button>
+                  &nbsp;
+                  <a class="btn btn-sm btn-warning" (click)="updatedepartment(u.idDepart)">
+                      update  
+                  </a>
+
+                  <a class="btn btn-sm btn-warning" (click)=" exportToPDF()">
+                    PDF  
+                </a>
+                &nbsp;
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  </div>
