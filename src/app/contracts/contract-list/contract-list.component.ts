@@ -6,9 +6,14 @@ import { ContratService } from '../../core/services/contrat.service';
 @Component({
   selector: 'app-contract-list',
   templateUrl: './contract-list.component.html',
-  styleUrls: ['./contract-list.component.css']
+  styleUrls: ['./contract-list.component.css'],
 })
 export class ContractListComponent implements OnInit {
+  title = 'pagination';
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 1;
+  tableSizes: any = [1, 2, 15, 20];
 
   @ViewChild('content', { static: false }) el!: ElementRef;
 
@@ -45,7 +50,6 @@ export class ContractListComponent implements OnInit {
 
   //generate pdf
   makePDF() {
-    
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.html(this.el.nativeElement, {
       callback: (pdf) => {
@@ -53,5 +57,19 @@ export class ContractListComponent implements OnInit {
       },
     });
   }
-
+  postList(): void {
+    this.contratService.getAllContrat().subscribe((data: Contrat[]) => {
+      this.contratList = data;
+    });
+  }
+  onTableDataChange(event: any): void {
+    this.page = event
+    this.postList();
+  }
+  
+  onTableSizeChange(event: any){
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.postList();
+  }
 }

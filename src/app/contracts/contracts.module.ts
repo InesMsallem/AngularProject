@@ -7,6 +7,7 @@ import { ContractFormComponent } from './contract-form/contract-form.component';
 import { ContractDetailComponent } from './contract-detail/contract-detail.component';
 import { ContractListComponent } from './contract-list/contract-list.component';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,6 @@ import { FormsModule } from '@angular/forms';
     ContractDetailComponent,
     ContractListComponent,
   ],
-  imports: [CommonModule, ContractsRoutingModule, FormsModule],
+  imports: [CommonModule, ContractsRoutingModule, FormsModule, NgxPaginationModule],
 })
 export class ContractsModule {}
