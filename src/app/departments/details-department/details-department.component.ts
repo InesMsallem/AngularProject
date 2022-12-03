@@ -11,17 +11,17 @@ import { DepartmentService } from 'src/app/core/services/department.service';
 export class DetailsDepartmentComponent implements OnInit {
   idDepart:any;
   constructor(private departmentserivce: DepartmentService)  { }
-  currentDepartment: Department ={
+   currentDepartment: Department ={
     idDepart: 0,
     nomDepart: "",
     code: "",
     type: "",
-    Universite: "",
-    etudiants: new Etudiant,
+    universites:{nomUni:""},
+   
     description:""
    
   };
-  public list:  Department[];
+  public list :  Department[];
   listDepartment:Department;
   departements: Department[];
   departmentList:any
@@ -45,8 +45,8 @@ export class DetailsDepartmentComponent implements OnInit {
       nomDepart: "",
       code: "",
       type: "",
-    Universite:"",
-    etudiants: new Etudiant,
+ 
+  universites:{nomUni:""},
     description:""
   };
     this.currentIndex = -1;

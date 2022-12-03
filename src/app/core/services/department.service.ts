@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Department } from '../Model/Department';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class DepartmentService {
     })
   }
   constructor(private http : HttpClient) { }
-  url: string = 'http://localhost:8080/Spring';
+  url: string = 'http://localhost:8088/Spring';
 
 
   getAlldep() {
@@ -49,6 +49,17 @@ export class DepartmentService {
       return this.http.get<any[]>(this.url + `/department/${idDepart}`);
     } 
    
-
+    getDepartmentByIdUniv(nomUni: String): Observable<any[]> {
+      return this.http.get<any[]>(this.url + `/getIDU/${nomUni}`);
+    } 
+    getUniversite(idUni: any): Observable<any> {
+      return of({
+        idUni: 1,
+      });
+    }
+    updateDepart(idDepart: number,department: Department): Observable<any> {
+      return this.http.put(this.url + `/putDep/${idDepart}`,department
+      );
+    }
    
 }

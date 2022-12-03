@@ -17,21 +17,6 @@
        </div>
     </div>
  </div>
- <div class="form-group col-md-6">
-    <label>code</label>
-    <input type="text" name="code"
-    [(ngModel)]="department.code"class="form-control"
-    required #p="ngModel">
-    <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
-      this field is required
-    </div>
-   <div *ngIf="p.hasError('minlength')">
-      minlength = 3 !
-   </div>
-   <div *ngIf="p.hasError('pattern')">
-     error pattern
-  </div>
-  </div>
   <div class="form-group col-md-6">
     <label>Type</label>
     <input type="text" name="type"
@@ -62,8 +47,19 @@
     error pattern
  </div>
  </div>
+ <div class="form-group">
+  <label> Universite</label>
+  <div class="col-sm-10">
+ <select name="department" class="from-controler">
+ <option>---select--</option>  
  
-  
+ <option> universite</option>
+
+</select>
+ </div>
+</div>
+
+
   <button (click)="add()"
    class="btn btn-sm btn-success"
    [disabled]="f.invalid" >

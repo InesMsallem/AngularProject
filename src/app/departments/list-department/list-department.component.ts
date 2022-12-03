@@ -10,12 +10,20 @@ import { DepartmentService } from 'src/app/core/services/department.service';
   styleUrls: ['./list-department.component.css']
 })
 export class ListDepartmentComponent implements OnInit {
+  title = 'pagination';
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 1;
+  tableSizes: any = [1, 2, 15, 20];
+
+
   list: Department[];
   listdepartments: any;
   nomUni:any;
   idDepart:number;
   departmentsList:any;
   codeDepartment:any;
+  idUni:number;
   constructor(private departmentservice:DepartmentService,private router: Router,private uss: ActivatedRoute) { }
 
  /* listData: MatTableDataSource<any>;*/
@@ -26,6 +34,7 @@ export class ListDepartmentComponent implements OnInit {
   getAlldep() {
     this.departmentservice.getAlldep().subscribe((res) => {
       this.listdepartments = res;
+      console.log(res)
     });
   }
   updatedepartment(idDepart: number) {
@@ -72,6 +81,20 @@ export class ListDepartmentComponent implements OnInit {
     
      
    ;}
-
+   onTableDataChange(event: any): void {
+    this.page = event
+    this.postList();
+  }
+  
+  onTableSizeChange(event: any){
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.postList();
+  }
+  postList(): void {
+    this.departmentservice.getAlldep().subscribe((data: Department[]) => {
+      this.departmentsList = data;
+    });
+  }
    
 }

@@ -7,6 +7,7 @@ import { CreateDepartmentComponent } from './create-department/create-department
 import { DetailsDepartmentComponent } from './details-department/details-department.component';
 import { ListDepartmentComponent } from './list-department/list-department.component';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -17,6 +18,6 @@ import { FormsModule } from '@angular/forms';
     DetailsDepartmentComponent,
     ListDepartmentComponent
   ],
-  imports: [CommonModule, DepartmentsRoutingModule, FormsModule],
+  imports: [CommonModule, DepartmentsRoutingModule, FormsModule, NgxPaginationModule],
 })
 export class DepartmentsModule { }

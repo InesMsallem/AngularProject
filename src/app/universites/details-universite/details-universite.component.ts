@@ -15,7 +15,7 @@ export class DetailsUniversiteComponent implements OnInit {
     nomUni:"",
     adresse:"",
     description:"",
-    Department:""
+  
    
   };
   public list:  Universite[];
@@ -40,7 +40,7 @@ export class DetailsUniversiteComponent implements OnInit {
       nomUni:"",
       adresse:"",
       description:"",
-      Department:""
+      
   };
     this.currentIndex = -1;
   }

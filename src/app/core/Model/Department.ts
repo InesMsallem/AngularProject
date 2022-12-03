@@ -1,4 +1,5 @@
 import { Etudiant } from "./Etudiant";
+import { Universite } from "./Universite";
 
 //simport { Universite } from "./universite";
 export class Department{
@@ -6,10 +7,9 @@ export class Department{
     nomDepart:String;
     code:String;
     type:String;
-    Universite:any;
-    etudiants:Etudiant;
-    description:String;
     
+    description:String;
+    universites:{nomUni:any}
 
     
 }

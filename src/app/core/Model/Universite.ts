@@ -5,6 +5,5 @@ export class Universite{
     nomUni:String;
     adresse:String;
     description:String;
-    Department:any
-   
+    
 }

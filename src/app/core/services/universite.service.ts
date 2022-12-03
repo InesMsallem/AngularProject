@@ -13,7 +13,7 @@ export class UniversiteService {
     })
   }
   constructor(private http : HttpClient) { }
-  url: string = 'http://localhost:8080/Spring';
+  url: string = 'http://localhost:8088/Spring';
 
 
   allUni(): Observable<any> {

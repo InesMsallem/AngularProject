@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Department } from 'src/app/core/Model/Department';
+import { Universite } from 'src/app/core/Model/Universite';
 import { DepartmentService } from 'src/app/core/services/department.service';
 
 
@@ -13,19 +14,22 @@ import { DepartmentService } from 'src/app/core/services/department.service';
 export class CreateDepartmentComponent implements OnInit {
   listdepartments: Department[];
 action:String;
-department: Department;
+nomUni:any;
+department: Department=new Department();
+
   constructor(private departmentserivce: DepartmentService, private router: Router,  private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.department.universites = {nomUni:null};
     
     this.department = new Department();
     let id = this.currentRoute.snapshot.params['id'];
     if (id != null) {
       //update
       this.action = 'update';
-      this.departmentserivce.getDepartmentById(id).subscribe((data: Department) => {
+      this.departmentserivce.getDepartmentByIdUniv(this.nomUni).subscribe((data:Department[]) => {
         
-        this.department = data;
+        this.department.universites.nomUni= data;
       });
       console.log('=================>' + this.department);
       this.goToDepartmentList
@@ -37,7 +41,7 @@ department: Department;
     }
 
     //get
-    this.departmentserivce.getAlldep().subscribe((data: Department[]) => {
+    this.departmentserivce.getDepartmentByIdUniv(this.nomUni).subscribe((data: Department[]) => {
       this.listdepartments = data;
     });
   }
@@ -53,6 +57,7 @@ department: Department;
       console.log('this.department:', this.department);
       this.departmentserivce.addDepartment(this.department).subscribe((result) => {
         if (result) {
+          this.router.navigate(['/departments/Department/list'])
           this.listdepartments = [this.department, ...this.listdepartments];
           location.reload();
         }

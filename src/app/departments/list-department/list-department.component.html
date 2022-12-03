@@ -1,12 +1,19 @@
 <div id="content" #content> 
   <h1>List Department</h1>
-  <input
+  <div><select (change)="onTableSizeChange($event)">
+    <option *ngFor="let size of tableSizes">
+        {{size}}
+    </option>
+      </select></div>
+<!--   <input
   type="number"
   aria-labelledby="temperature low"
   #myInput
   [(ngModel)]="idDepart"
   (input)="recherche(idDepart)"
-/>
+/> -->
+<label for="keyword">Recherche</label>
+
   <a class="btn btn-sm btn-warning" (click)="toadd()">
       Add Department  
   </a>
@@ -15,19 +22,31 @@
           <tr>
              <th>ID</th>
               <th>Nom Department</th>
-              <th>Code</th>
+         
               <th>type</th>
+             <th>universite</th>
               <th>description</th>
+    
               <th>action</th>
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let u of listdepartments">
+          <tr *ngFor="let u of listdepartments | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    ">
               <td>{{u.idDepart}}</td>
               <td>{{u.nomDepart }}</td>
-              <td> {{u.code}}</td>
-              <td> {{u.type}} </td>
-              <td> {{u.description}}</td>
+             
+              <td [ngStyle]="{color: u.code=='Informatique' ? '#71BC75' : '#550F00' }"> {{u.type}} </td>
+              
+              <td>{{ u?.universites?.nomUni }}</td>
+              <td > {{u.description}}</td>
+              
               <td>
                   <button class="btn btn-sm btn-danger" (click)="deletedepartment(u.idDepart)" >
                       delete
@@ -45,4 +64,12 @@
           </tr>
       </tbody>
   </table>
+  <div>
+        <pagination-controls
+          previousLabel="prev"
+          nextLabel="next"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </div>
   </div>
