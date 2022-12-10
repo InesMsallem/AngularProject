@@ -9,4 +9,5 @@ export class Contrat {
     specialite: Specialite;
     etudiant: Etudiant;
     montantContrat : number;
+    descriptionContrat: String;
 }

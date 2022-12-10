@@ -6,7 +6,11 @@ import { ContractListComponent } from './contract-list/contract-list.component';
 import { ContractsComponent } from './contracts.component';
 
 const routes: Routes = [{ path: '', component: ContractsComponent },
-{ path: 'ContractsList', component: ContractListComponent },
+{ path: 'ContractsList', component: ContractListComponent, children: [
+  {
+    path: ':id', // child route path
+    component: ContractDetailComponent, // child route component that the router renders
+  }]},
 { path: 'addContract', component: ContractFormComponent },
 { path: 'updateContract/:id', component: ContractFormComponent },
 { path: ':id', component: ContractDetailComponent },];

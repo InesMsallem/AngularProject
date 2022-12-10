@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Contrat } from '../Model/Contrat';
 import { Observable } from 'rxjs';
+import { Specialite } from '../Model/Specialite';
 @Injectable({
   providedIn: 'root',
 })
@@ -31,5 +32,13 @@ export class ContratService {
 
   deleteContrat(id: number): Observable<Object> {
     return this.http.delete(this.uri + `/deleteContrat/${id}`);
+  }
+
+  getContractByOption(s : Specialite ){
+    return this.http.get(this.uri+`/getContractByOption/${s}`)
+  }
+
+  ContractDateIsNear(idContrat: number){
+    return this.http.get(this.uri+`/DateContractIsNear/${idContrat}`)
   }
 }

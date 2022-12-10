@@ -9,6 +9,6 @@ export class Etudiant {
     prenomE : String ;
     options:Option;
     departement:Departement;
-    contrats:Contrat;
+    contrats:[Contrat];
     equipes:Equipe
 }

@@ -1,3 +1,7 @@
+<app-header></app-header>
+<div id="form">
+
+
 <h1>{{ action }} contract</h1>
 <form style="padding-left: 250" #f="ngForm">
   <div class="form-group col-md-6">
@@ -42,8 +46,8 @@
     >
       <option value="IA">IA</option>
       <option value="RESEAU">RESEAU</option>
-      <option value="kids">CLOUD</option>
-      <option value="kids">SECURITE</option>
+      <option value="CLOUD">CLOUD</option>
+      <option value="SECURITE">SECURITE</option>
     </select>
     <div class="alert alert-danger" *ngIf="s.invalid && s.touched">
       <div *ngIf="s.hasError('required')">This field is required</div>
@@ -69,10 +73,38 @@
       <div *ngIf="m.hasError('max')">Montant maximal = 5000</div>
     </div>
   </div>
+
+  <div class="form-group col-md-6">
+    <label>Description</label>
+    <input
+      [(ngModel)]="contrat.descriptionContrat"
+      type="text"
+      name="descriptionContrat"
+      required
+      class="form-control"
+      required
+      #z="ngModel"
+    />
+    <div class="alert alert-danger" *ngIf="z.invalid && z.touched">
+      <div *ngIf="z.hasError('required')">This field is required</div>
+    </div>
+  </div>
+ <!-- <select
+  [(ngModel)]="contrat.etudiant"
+  name="etudiant"
+  class="form-control"
+  required
+  #x="ngModel"
+  *ngFor="let student of etudiantList"
+>
+  <option value="IA">{{student.idEtudiant}}</option>
+</select> -->
   <br />
+
   <button class="btn btn-success" (click)="add()" [disabled]="f.invalid">
     save
   </button>
   &nbsp;
-  <button type="reset" class="btn btn-warning">reset</button>
+  <button [disabled]="isUnchanged" type="reset" class="btn btn-warning">reset</button>
 </form>
+</div>

@@ -1,25 +1,73 @@
-<div id="content" #content>
-  <h1>List Contracts</h1>
-  <div><select (change)="onTableSizeChange($event)">
-<option *ngFor="let size of tableSizes">
-    {{size}}
-</option>
-  </select></div>
-  <table class="table">
+<app-header></app-header>
+<div id="list">
+
+
+<div>
+  <h1>List Of Contracts</h1>
+
+  <div id="styled-select">
+    <select (change)="onTableSizeChange($event)">
+      <option *ngFor="let size of tableSizes">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+
+  <div id="styled-sort">
+    <select class="form-control" id="sort-by" (change)="sort($event)">
+      <option value="" selected disabled hidden>Sort By</option>
+      <option value="Low">Show Low to High Amount</option>
+      <option value="High">Show High to Low Amount</option>
+    </select>
+  </div>
+  <form>
+    <div id="formsearch" class="form-group">
+      <input
+        id="search"
+        placeholder="search"
+        [(ngModel)]="searchText"
+        type="text"
+        name="search"
+        class="form-control"
+        (click)="transferData()"
+      />
+      <button id="stats"
+        (click)="showNotification('success', 'NOTIFICATION')"
+        class="btn btn-info"
+      >
+        Show Statistics
+      </button>
+    </div>
+  </form>
+
+  <table class="table" id="content" #content>
     <thead>
       <tr>
-        <th>id</th>
-        <th>Date Début</th>
-        <th>Date Fin</th>
-        <th>Specialité</th>
-        <th>Montant</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Speciality</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Students</th>
         <th>action</th>
+        <th>
+          <a (click)="makePDF()">
+            <img
+              style="cursor: pointer"
+              src="../../../assets/img/pdf.png"
+              alt=""
+              width="30"
+              height="30"
+            />
+          </a>
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr
         *ngFor="
           let contrat of contratList
+            | filter : searchText
             | paginate
               : {
                   itemsPerPage: tableSize,
@@ -29,39 +77,49 @@
           let i = index
         "
       >
-        <td>{{ contrat.idContrat }}</td>
         <td>{{ contrat.dateDebutContrat }}</td>
-        <td>{{ contrat.dateFinContrat }}</td>
+        <td>
+          {{ contrat.dateFinContrat }}
+          <p *ngIf="ContractDateIsNear(contrat.idContrat)">SOON</p>
+        </td>
         <td>{{ contrat.specialite }}</td>
-        <td [ngStyle]="{color: contrat.montantContrat>300 ? '#71BC75' : '#550F00' }"> {{contrat.montantContrat}}
-            <td>
+        <td
+          [ngStyle]="{
+            color: contrat.montantContrat > 300 ? '#71BC75' : '#550F00'
+          }"
+        >
+          {{ contrat.montantContrat }}
+        </td>
+        <td>{{ contrat.descriptionContrat }}</td>
+        <td>{{ contrat.etudiant.prenomE }}</td>
+
+        <td>
           <button
             class="btn btn-sm btn-danger"
             (click)="delete(contrat.idContrat)"
           >
-            delete
+             <img src="../../../assets/img/delete2.png" alt="" height="15" width="15">
           </button>
           &nbsp;
           <a
             class="btn btn-sm btn-warning"
             [routerLink]="['/contracts/updateContract', contrat.idContrat]"
           >
-            update
+             <img src="../../../assets/img/update.png" alt="" height="20" width="20">
           </a>
           &nbsp;
-          <a
+          <a 
             class="btn btn-sm btn-info"
             [routerLink]="['/contracts/', contrat.idContrat]"
           >
-            details
+             <img src="../../../assets/img/details.png" alt="" height="20" width="20">
           </a>
           &nbsp;
-          <a class="btn btn-sm btn-info" (click)="makePDF()"> generate pdf </a>
         </td>
       </tr>
     </tbody>
   </table>
-  <div>
+  <div class="clearfix">
     <pagination-controls
       previousLabel="prev"
       nextLabel="next"
@@ -69,4 +127,32 @@
     >
     </pagination-controls>
   </div>
+</div>
+
+<notifier-container></notifier-container>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
