@@ -18,11 +18,7 @@
         class="form-control"
         (click)="transferData()"
       />
-      <button id="stats"
-          (click)="GoToStats()"
-        >
-          <img src="../../../assets/img/stats.png" alt="" height="40px" width="40px">
-        </button>
+     
       <div id="styled-sort">
         <select class="form-control" id="sort-by" (change)="sort($event)">
           <option value="" selected disabled hidden>Sort By</option>
@@ -55,15 +51,11 @@
         <th>action</th>
        
         <th>
-          <a (click)="makePDF()">
-            <img
-              style="cursor: pointer"
-              src="../../../assets/img/pdf.png"
-              alt=""
-              width="30"
-              height="30"
-            />
-          </a>
+          <button id="stats"
+          (click)="GoToStats()"
+        >
+          <img src="../../../assets/img/stats.png" alt="" height="40px" width="40px">
+        </button>
         </th>
       </tr>
     </thead>
