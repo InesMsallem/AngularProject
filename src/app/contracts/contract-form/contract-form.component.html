@@ -2,10 +2,10 @@
 <div id="form">
 
 
-<h1>{{ action }} contract</h1>
+<h1 id="title">{{ action }} contract</h1>
 <form style="padding-left: 250" #f="ngForm">
   <div class="form-group col-md-6">
-    <label>Date debut</label>
+    <label>Start Date</label>
     <input
       [(ngModel)]="contrat.dateDebutContrat"
       type="date"
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="form-group col-md-6">
-    <label>Date fin</label>
+    <label>End Date</label>
     <input
       [(ngModel)]="contrat.dateFinContrat"
       type="date"
@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="form-group col-md-6">
-    <label>specialite</label>
+    <label>Speciality</label>
     <select
       [(ngModel)]="contrat.specialite"
       name="specialite"
@@ -54,7 +54,7 @@
     </div>
   </div>
   <div class="form-group col-md-6">
-    <label>montantContrat</label>
+    <label>Amount</label>
     <input
       [ngClass]="{ changeBackground: contrat.montantContrat > 300 }"
       [(ngModel)]="contrat.montantContrat"
@@ -69,11 +69,10 @@
     />
     <div class="alert alert-danger" *ngIf="m.invalid && m.touched">
       <div *ngIf="m.hasError('required')">This field is required</div>
-      <div *ngIf="m.hasError('min')">Montant minimal = 250</div>
-      <div *ngIf="m.hasError('max')">Montant maximal = 5000</div>
+      <div *ngIf="m.hasError('min')">Min Amount = 250</div>
+      <div *ngIf="m.hasError('max')">Max Amount = 5000</div>
     </div>
   </div>
-
   <div class="form-group col-md-6">
     <label>Description</label>
     <input
@@ -89,22 +88,23 @@
       <div *ngIf="z.hasError('required')">This field is required</div>
     </div>
   </div>
- <!-- <select
+  <!-- <select
   [(ngModel)]="contrat.etudiant"
   name="etudiant"
   class="form-control"
   required
-  #x="ngModel"
   *ngFor="let student of etudiantList"
 >
   <option value="IA">{{student.idEtudiant}}</option>
-</select> -->
+</select>  -->
   <br />
-
+<div id="buttons">
   <button class="btn btn-success" (click)="add()" [disabled]="f.invalid">
     save
   </button>
   &nbsp;
   <button [disabled]="isUnchanged" type="reset" class="btn btn-warning">reset</button>
+</div>
+
 </form>
 </div>

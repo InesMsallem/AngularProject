@@ -1,8 +1,16 @@
-.changeBackground{
-    background-color: #E3CAC5;
+.changeBackground {
+  background-color: #e3cac5;
 }
 
+#form {
+  padding-left: 600px;
+  padding-top: 50px;
+}
 
-#form{
-    padding-left: 600px;
-   }
+#buttons {
+  padding-left: 160px;
+}
+
+#title {
+  padding-left: 80px;
+}

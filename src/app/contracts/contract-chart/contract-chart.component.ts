@@ -37,7 +37,7 @@ export class ContractChartComponent implements OnInit {
   chartSeries: ApexNonAxisChartSeries = [];
 
   chartDetails: ApexChart = {
-    width: 380,
+    width: 600,
     type: 'donut',
     toolbar: {
       show: true,
@@ -47,7 +47,7 @@ export class ContractChartComponent implements OnInit {
   chartLabels = ['CLOUD', 'RESEAU', 'SECURITE', 'IA'];
 
   chartTitle: ApexTitleSubtitle = {
-    text: 'Specialities',
+    text: 'CONTRACTS',
     align: 'center',
   };
 
@@ -58,7 +58,6 @@ export class ContractChartComponent implements OnInit {
     this.contratService.getAllContrat().subscribe((data: Contrat[]) => {
       this.contratList = data;
       for (let i = 0; i < this.contratList.length; i++) {
-        // console.log(this.contratList[i].specialite)
         this.contratService
           .getContractByOption(this.contratList[0].specialite)
           .subscribe((data) => {

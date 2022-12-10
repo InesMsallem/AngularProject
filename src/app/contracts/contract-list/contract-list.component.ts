@@ -22,6 +22,7 @@ import {
 import { EtudiantService } from 'src/app/core/services/etudiant.service';
 import { Etudiant } from 'src/app/core/Model/Etudiant';
 import { NotifierService } from 'angular-notifier';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-contract-list',
   templateUrl: './contract-list.component.html',
@@ -34,7 +35,7 @@ export class ContractListComponent implements OnInit {
   page: number = 1;
   count: number = 0;
   tableSize: number = 5;
-  tableSizes: any = [1, 5, 10, 15];
+  tableSizes: any = [5, 10, 15];
   order: boolean = true;
   queryField = new FormControl();
   results$: Observable<any>;
@@ -43,7 +44,7 @@ export class ContractListComponent implements OnInit {
 
   @ViewChild('content', { static: false }) el!: ElementRef;
 
-  constructor(
+  constructor(private router: Router,
     private contratService: ContratService,
     private fb: FormBuilder,
     notifier: NotifierService
@@ -111,7 +112,7 @@ export class ContractListComponent implements OnInit {
     this.page = 1;
     this.postList();
   }
-
+//sort by amount
   sort(event: any) {
     switch (event.target.value) {
       case 'Low': {
@@ -147,7 +148,7 @@ export class ContractListComponent implements OnInit {
     this.parentData=this.searchText
   }
 
-
+//notifier 
 	/**
 	 * Show a notification
 	 *
@@ -157,6 +158,12 @@ export class ContractListComponent implements OnInit {
 	public showNotification( type: string, message: string ): void {
 		this.notifier.notify( type, message );
 	}
+
+
+
+  public GoToStats(){
+    this.router.navigateByUrl('');
+  }
 }
 
 

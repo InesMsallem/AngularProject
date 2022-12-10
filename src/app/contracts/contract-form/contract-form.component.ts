@@ -41,14 +41,14 @@ export class ContractFormComponent implements OnInit {
     
     if (id != null) {
       //update
-      this.action = 'update';
+      this.action = 'Update';
       this.contratService.getContratById(id).subscribe((data: Contrat) => {
         this.contrat = data;
       });
       console.log('=================>' + this.contrat);
     } else {
       //add
-      this.action = 'add new';
+      this.action = 'Add New';
       this.contrat = new Contrat();
     }
 

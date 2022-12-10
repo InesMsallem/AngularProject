@@ -1,23 +1,44 @@
 <app-header></app-header>
 
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<div>
-    <ul>
-        <li>
-            {{contrat.dateDebutContrat}}
-        </li>
-        <li>
-            {{contrat.dateFinContrat}}
-
-        </li>
-        <li>
-            {{contrat.montantContrat}}
-
-        </li>
-        <li>
-            {{contrat.specialite}}
-
-        </li>
-    </ul>
-   
+<div class="container-fluid p-0 m-0">
+  <div class="row no-gutters">
+    <div class="col-9" style="padding-top: 60px;">
+      <div class="position-absolute p-5 bg-white m-5 shadow-lg map-box2">
+        <h3 class="text-muted">Contract {{ contrat.idContrat }}</h3>
+        <div class="mt-4">
+          <address>
+            <strong class="text-muted">Start date</strong><br />
+            {{ contrat.dateDebutContrat }}<br />
+          </address>
+          <address>
+            <strong class="text-muted">End Date</strong><br />
+            {{ contrat.dateFinContrat }}
+          </address>
+          <address>
+            <strong class="text-muted">Speciality</strong><br />
+            {{ contrat.specialite }}
+          </address>
+          <address class="mb-5">
+            <strong class="text-muted">Amount</strong><br />
+            <a href="mailto:#" class="text-secondary">
+              {{ contrat.montantContrat }}
+            </a>
+          </address>
+        </div>
+      </div>
+      <div
+        class="embed-responsive embed-responsive-16by9"
+        style="height: 560px !important"
+      ></div>
+    </div>
+  </div>
 </div>

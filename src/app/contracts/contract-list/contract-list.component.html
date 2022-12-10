@@ -5,21 +5,8 @@
 <div>
   <h1>List Of Contracts</h1>
 
-  <div id="styled-select">
-    <select (change)="onTableSizeChange($event)">
-      <option *ngFor="let size of tableSizes">
-        {{ size }}
-      </option>
-    </select>
-  </div>
 
-  <div id="styled-sort">
-    <select class="form-control" id="sort-by" (change)="sort($event)">
-      <option value="" selected disabled hidden>Sort By</option>
-      <option value="Low">Show Low to High Amount</option>
-      <option value="High">Show High to Low Amount</option>
-    </select>
-  </div>
+
   <form>
     <div id="formsearch" class="form-group">
       <input
@@ -32,17 +19,33 @@
         (click)="transferData()"
       />
       <button id="stats"
-        (click)="showNotification('success', 'NOTIFICATION')"
-        class="btn btn-info"
-      >
-        Show Statistics
-      </button>
+          (click)="GoToStats()"
+        >
+          <img src="../../../assets/img/stats.png" alt="" height="40px" width="40px">
+        </button>
+      <div id="styled-sort">
+        <select class="form-control" id="sort-by" (change)="sort($event)">
+          <option value="" selected disabled hidden>Sort By</option>
+          <option value="Low">Show Low to High Amount</option>
+          <option value="High">Show High to Low Amount</option>
+        </select>
+        
+      </div>
+    
     </div>
   </form>
+ 
 
   <table class="table" id="content" #content>
     <thead>
       <tr>
+        <th>  <div id="styled-select">
+          <select (change)="onTableSizeChange($event)">
+            <option *ngFor="let size of tableSizes">
+              {{ size }}
+            </option>
+          </select>
+        </div></th>
         <th>Start Date</th>
         <th>End Date</th>
         <th>Speciality</th>
@@ -50,6 +53,7 @@
         <th>Description</th>
         <th>Students</th>
         <th>action</th>
+       
         <th>
           <a (click)="makePDF()">
             <img
@@ -64,6 +68,7 @@
       </tr>
     </thead>
     <tbody>
+     
       <tr
         *ngFor="
           let contrat of contratList
@@ -77,6 +82,7 @@
           let i = index
         "
       >
+      <td></td>
         <td>{{ contrat.dateDebutContrat }}</td>
         <td>
           {{ contrat.dateFinContrat }}
@@ -130,29 +136,5 @@
 </div>
 
 <notifier-container></notifier-container>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+    
   </div>
-</div>
-</div>

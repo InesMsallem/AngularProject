@@ -23,8 +23,9 @@
     height: 34px;
     overflow: hidden;
     border: 1px solid #ccc;
-   
+    display: inline-block;
     border-radius:6px;
+    float: left;
  }
  #styled-sort select {
     background: transparent;
@@ -37,15 +38,17 @@
     height: 34px;
     -webkit-appearance: none;
     font-family:helvetica-roman;
-    
+
  }
  #stats{
+   padding-left: 10px;
     display: inline-block;
-    float: left; 
-
-
+float: right;
+border: transparent;
+background-color: transparent;
 }
  #search{
+
     width: 180px;
     height: 40px;
     overflow: hidden;
@@ -53,7 +56,6 @@
     margin: auto;
     border-radius:6px;
     display: inline-block;
-    float: right; 
  }
 
  #formsearch{
