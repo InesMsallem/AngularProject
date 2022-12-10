@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { Department } from 'src/app/core/Model/Department';
+import { Departement } from 'src/app/core/Model/Department';
 import { Universite } from 'src/app/core/Model/Universite';
 import { DepartmentService } from 'src/app/core/services/department.service';
 
@@ -12,68 +13,69 @@ import { DepartmentService } from 'src/app/core/services/department.service';
   styleUrls: ['./create-department.component.css']
 })
 export class CreateDepartmentComponent implements OnInit {
-  listdepartments: Department[];
-action:String;
-nomUni:any;
-department: Department=new Department();
-
+  listdepartments: Departement[];
+  action:String;
+  nomUniversite:Universite;
+  departement: Departement=new Departement();
+  listuniversites:Universite[]
+  idUniversite:any;
+  value:any
+ 
+universites: Universite = new Universite();
   constructor(private departmentserivce: DepartmentService, private router: Router,  private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.department.universites = {nomUni:null};
     
-    this.department = new Department();
-    let id = this.currentRoute.snapshot.params['id'];
-    if (id != null) {
-      //update
-      this.action = 'update';
-      this.departmentserivce.getDepartmentByIdUniv(this.nomUni).subscribe((data:Department[]) => {
-        
-        this.department.universites.nomUni= data;
-      });
-      console.log('=================>' + this.department);
-      this.goToDepartmentList
-    } else {
-      //add
-      this.action = 'add new';
-      this.department = new Department();
-      this.goToDepartmentList
+      //this.departmentserivce.getAllUniv().subscribe(response =>this.listuniversites=response)
+    this.getUniversites();
     }
-
-    //get
-    this.departmentserivce.getDepartmentByIdUniv(this.nomUni).subscribe((data: Department[]) => {
-      this.listdepartments = data;
-    });
-  }
 
   //add|update
   add() {
-    if (this.action == 'update') {
-      this.departmentserivce
-        .updateDepartment(this.department)
-        .subscribe(() => console.log('complete'));
-    } else {
-    
-      console.log('this.department:', this.department);
-      this.departmentserivce.addDepartment(this.department).subscribe((result) => {
-        if (result) {
-          this.router.navigate(['/departments/Department/list'])
-          this.listdepartments = [this.department, ...this.listdepartments];
-          location.reload();
+
+      let currentName=this.idUniversite;
+      let currentId;
+      this.listuniversites.forEach(function (value) {
+        if(value.nomUniversite==currentName)
+        {
+          currentId=value.idUniversite;
+          console.log("eee"+currentId);
         }
       });
+      this.departmentserivce.addDeparttouni(currentId).subscribe(
+        res => {
+          console.log('department created!');
+          this.departement = res;
+          console.log(this.departement)
+        });
+
+        
     }
-    
+  
+  changeidUniversite(value:any): void {
+
+    console.log((value.target as HTMLInputElement).value);
+    this.idUniversite=(value.target as HTMLInputElement).value;
+    console.log(this.idUniversite);
   }
+
+  getUniversites(){
+    this.departmentserivce.getUniversites().subscribe(
+    (data) => {
+      this.listuniversites = data;
+      console.log(this.listuniversites);
+    });
+}
 
   //delete
   delete() {
-    this.departmentserivce.deleteDepartment(this.department.idDepart);
+    this.departmentserivce.deleteDepartment(this.departement.idDepartement);
   }
   //navigate
   goToDepartmentList() {
     this.router.navigate(['/Department']);
   }
+
 }
 
 

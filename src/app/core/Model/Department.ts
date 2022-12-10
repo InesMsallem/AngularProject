@@ -2,14 +2,14 @@ import { Etudiant } from "./Etudiant";
 import { Universite } from "./Universite";
 
 //simport { Universite } from "./universite";
-export class Department{
-    idDepart:number;
-    nomDepart:String;
+export class Departement{
+    idDepartement:number;
+    nomDepartement:String;
     code:String;
     type:String;
-    
+  
     description:String;
-    universites:{nomUni:any}
+    universite:Universite
 
     
 }

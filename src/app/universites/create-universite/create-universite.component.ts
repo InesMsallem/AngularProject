@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Universite } from 'src/app/core/Model/Universite';
 import {UniversiteService}from 'src/app/core/services/universite.service'
@@ -14,11 +15,12 @@ export class CreateUniversiteComponent implements OnInit {
   listUniversite: Universite[];
 action:String;
 universite: Universite;
-  
+public loginForm: FormGroup;
   constructor(
     private universiteservice: UniversiteService,
     private currentRoute: ActivatedRoute,
     private router: Router,
+    private fb: FormBuilder
    
   ) {}
 
@@ -68,12 +70,11 @@ universite: Universite;
 
   //delete
   delete() {
-    this.universiteservice.deleteUni(this.universite.idUni);
+    this.universiteservice.deleteUni(this.universite.idUniversite);
   }
   //navigate
   goToDepartmentList() {
     this.router.navigate(['/universites/universite']);
   }
 }
-
 

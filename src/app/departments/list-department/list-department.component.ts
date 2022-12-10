@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Department } from 'src/app/core/Model/Department';
+import { Departement } from 'src/app/core/Model/Department';
 import { Observable } from "rxjs";
 import { DepartmentService } from 'src/app/core/services/department.service';
 
@@ -17,33 +17,35 @@ export class ListDepartmentComponent implements OnInit {
   tableSizes: any = [1, 2, 15, 20];
 
 
-  list: Department[];
-  listdepartments: any;
-  nomUni:any;
-  idDepart:number;
+  list: Departement[];
+ 
+  nomUniversite:any;
+  idDepartement:number;
   departmentsList:any;
   codeDepartment:any;
-  idUni:number;
+  idUniversite:number;
+  departments:Departement=new Departement();
+  listDepartment:Departement[]=[]
   constructor(private departmentservice:DepartmentService,private router: Router,private uss: ActivatedRoute) { }
 
  /* listData: MatTableDataSource<any>;*/
   ngOnInit(): void {
    this.getAlldep();
+ 
   }
  
   getAlldep() {
-    this.departmentservice.getAlldep().subscribe((res) => {
-      this.listdepartments = res;
-      console.log(res)
-    });
+    this.departmentservice.getAlldep().subscribe(
+      response => { this.listDepartment = response; console.log(response) })
+
   }
-  updatedepartment(idDepart: number) {
-    this.router.navigate(['/departments/Department/putDepartement', idDepart]);
+  updatedepartment(idDepartement: number) {
+    this.router.navigate(['/departments/Department/putDepartement', idDepartement]);
   }
 
   
-  deletedepartment(idDepart: number) {
-    this.departmentservice. deleteDepartment(idDepart).subscribe((data) => {
+  deletedepartment(idDepartement: number) {
+    this.departmentservice. deleteDepartment(idDepartement).subscribe((data) => {
       console.log(data);
       this.getAlldep();
     });
@@ -62,25 +64,7 @@ export class ListDepartmentComponent implements OnInit {
       window.open(fileURL);
     });
   }
-  recherche(idDepart: number){
-    this.departmentsList= this.departmentservice.getDepartmentByIdList(idDepart).subscribe(res => {
-       
-       this.departmentsList = res;
-       setTimeout(()=>{
-         this.list=[];
-         this.list[0]=this.departmentsList;
-         console.log( res);
-       },500)
-       
-       
-       
 
- 
-      },
-     error => console.log(error));
-    
-     
-   ;}
    onTableDataChange(event: any): void {
     this.page = event
     this.postList();
@@ -92,7 +76,7 @@ export class ListDepartmentComponent implements OnInit {
     this.postList();
   }
   postList(): void {
-    this.departmentservice.getAlldep().subscribe((data: Department[]) => {
+    this.departmentservice.getAlldep().subscribe((data: Departement[]) => {
       this.departmentsList = data;
     });
   }
