@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import jsPDF from 'jspdf';
 import { Contrat } from 'src/app/core/Model/Contrat';
 import { ContratService } from 'src/app/core/services/contrat.service';
 
@@ -9,6 +10,7 @@ import { ContratService } from 'src/app/core/services/contrat.service';
   styleUrls: ['./contract-detail.component.css']
 })
 export class ContractDetailComponent implements OnInit {
+  @ViewChild('content', { static: false }) el!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,4 +25,13 @@ export class ContractDetailComponent implements OnInit {
       this.contrat = data;
     });
   }
+    //generate pdf
+    makePDF() {
+      let pdf = new jsPDF('p', 'pt', 'a6');
+      pdf.html(this.el.nativeElement, {
+        callback: (pdf) => {
+          pdf.save('contrat.pdf');
+        },
+      });
+    }
 }
