@@ -110,18 +110,14 @@
             <div class="collapse" id="navbar-Product">
               <ul class="nav nav-sm flex-column">
                 <li class="nav-item">
-                  <a [routerLink]="['/listeetudiant']" class="nav-link"
+                  <a [routerLink]="['/gestionprojet/ListProjetComponent']" class="nav-link"
                     >List Of Projects</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a [routerLink]="['/app-add-projet']" class="nav-link"
+                  <a [routerLink]="['/gestionprojet/AddProjetComponent']" class="nav-link"
                     >Add New Project</a
                   >
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">update projet</a>
-                </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">les taches par projet</a>
                 </li>
@@ -142,22 +138,16 @@
             </a>
             <div class="collapse" id="navbar-Factures">
               <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a [routerLink]="['/facturenonpayer']" class="nav-link"
-                    >Factures Non payer
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a [routerLink]="['/facturepayer']" class="nav-link"
-                    >Factures payer</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a [routerLink]="['/facture/add']" class="nav-link"
-                    >Nouvelle Facture</a
-                  >
-                </li>
               </ul>
+              <li class="nav-item">
+                <a [routerLink]="['/gestiontache/ListTacheComponent']" class="nav-link"
+                  >List Of Tasks</a
+                >
+              </li>
+              <li class="nav-item">
+                <a [routerLink]="['/gestiontache/AddTacheComponent']" class="nav-link"
+                  >Add New Task</a
+                >
             </div>
           </li>
           <li class="nav-item">

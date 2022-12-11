@@ -1,0 +1,53 @@
+<div id="content" #content>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>List Taches</h1>
+        </div>
+        <div class="col">
+          <div class="row">
+              <div class="col">
+                  Recherche
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" (change)="setSearch($event)">
+              </div>
+              <div class="col">
+                  <button type="button" class="btn btn-primary" (click)="FindbyNom()">Search</button>
+              </div>
+      </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Libelle</th>
+        <th>Prix</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tache of tacheList">
+        <td>{{tache.idTache }}</td>
+        <td>{{ tache.libelle}}</td>
+        <td>{{ tache.prixTache}}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deleteTache(tache.idTache)" >
+                  delete
+              </button>
+              &nbsp;
+              <a class="btn btn-sm btn-warning" (click)="updateTache(tache.idTache)" >
+                  update  
+              </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+  </div>
+</div>
