@@ -10,10 +10,9 @@
                   Recherche
               </div>
               <div class="col">
-                  <input type="text" class="form-control" (change)="setSearch($event)">
-              </div>
+                  <input type="text" [(ngModel)]="searchText">
               <div class="col">
-                  <button type="button" class="btn btn-primary" (click)="FindbyNom()">Search</button>
+                  <button type="button" class="btn btn-primary" >Search</button>
               </div>
       </div>
           
@@ -22,7 +21,7 @@
       </div>
     </div>
   
-  <table class="table">
+  <table [(ngModel)]="tacheList" class="table">
     <thead>
       <tr>
         <th>id</th>
@@ -32,7 +31,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tache of tacheList">
+      <tr  *ngFor = "let tache of tacheList |filter: searchText">
         <td>{{tache.idTache }}</td>
         <td>{{ tache.libelle}}</td>
         <td>{{ tache.prixTache}}</td>

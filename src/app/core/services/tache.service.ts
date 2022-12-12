@@ -12,7 +12,7 @@ const baseUrl = 'http://localhost:8088/api/Tache';
 export class TacheService {
 
   constructor(private http: HttpClient) { }
-  getAll(): Observable<Tache[]> {
+  getAllT(): Observable<Tache[]> {
     return this.http.get<Tache[]>(baseUrl+"/getallTaches");
   }
   findByNom(nom: any): Observable<Tache[]> {

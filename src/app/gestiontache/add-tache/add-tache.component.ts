@@ -40,7 +40,7 @@ export class AddTacheComponent implements OnInit {
       this.action = 'add new';
       this.tache = new Tache();
     }
-    this.tacheservice.getAll().subscribe((data: Tache[]) => {
+    this.tacheservice.getAllT().subscribe((data: Tache[]) => {
       this.tacheList = data;
     });
   }

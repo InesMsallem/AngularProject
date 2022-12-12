@@ -14,7 +14,7 @@ export class ListTacheComponent implements OnInit {
     private route:Router ) { }
     tache: Tache;
     search: string;
-  
+  searchText :string;
     tacheList: Tache[];
     ngOnInit(): void {
       this.allTache();
@@ -39,7 +39,7 @@ export class ListTacheComponent implements OnInit {
 
   }
   allTache() {
-    this.tacheservice.getAll().subscribe((res) => {
+    this.tacheservice.getAllT().subscribe((res) => {
       this.tacheList = res;
     });
 }
@@ -58,12 +58,13 @@ deleteTache(idTache: any) {
 }
 //updateContract
 postList(): void {
-  this.tacheservice.getAll().subscribe((data: Tache[]) => {
+  this.tacheservice.getAllT().subscribe((data: Tache[]) => {
     this.tacheList = data;
   });
 }
 updateTache(idProjet: any) {
   this.route.navigate(['/gestiontache/tache/putTache/', idProjet]);
 }
+
 
 }

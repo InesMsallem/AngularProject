@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { Projet } from 'src/app/core/Model/Projet';
+import { Tache } from 'src/app/core/Model/Tache';
 import { ProjetService } from 'src/app/core/services/projet.service';
-
+import { TacheService } from 'src/app/core/services/tache.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-list-projet',
   templateUrl: './list-projet.component.html',
@@ -10,13 +12,14 @@ import { ProjetService } from 'src/app/core/services/projet.service';
 })
 export class ListProjetComponent implements OnInit {
 
-  constructor(private projetService :ProjetService,
+  constructor(private projetService :ProjetService, private  Tss:TacheService , private modalService: NgbModal,
    private route:Router ) { }
 
   projet: Projet;
   search: string;
 
   projetList: Projet[];
+  tacheList: Tache[]; 
   ngOnInit(): void {
     this.allProjet();
     this.projet = new Projet();
@@ -69,5 +72,16 @@ export class ListProjetComponent implements OnInit {
   updateProjet(idProjet: any) {
     this.route.navigate(['/gestionprojet/projet/putProjet', idProjet]);
   }
-  
+  getAllT()
+  { 
+    this.Tss.getAllT().subscribe((res) => {
+      this.tacheList = res;
+    });
+  }
+  open(id: number) {
+   // const modalRef = this.modalService.open(GetdetailbyidComponent);
+    //modalRef.componentInstance.idProjet = id ;
+ 
+}
+
 }
