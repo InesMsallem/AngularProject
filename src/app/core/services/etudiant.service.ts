@@ -15,6 +15,10 @@ export class EtudiantService {
     }),
   };
   constructor(private http: HttpClient) {}
+
+  getAll() {
+    return this.http.get('http://localhost:8008/students/');
+  }
   getAllEtudiant() {
     return this.http.get<Etudiant[]>(this.uri + '/getalletudiant');
   }

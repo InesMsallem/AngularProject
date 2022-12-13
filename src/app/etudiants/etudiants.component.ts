@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadStudents } from '@core/store/students/students.actions';
+import * as fromStore from '@core/store';
 
 @Component({
   selector: 'app-etudiants',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EtudiantsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<fromStore.State>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadStudents());
   }
 
 }

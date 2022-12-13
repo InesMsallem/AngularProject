@@ -12,6 +12,12 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { reducers, effects } from '@core/store/index';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +30,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     FormsModule,
     RouterModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     NgbModule,
     NgxPaginationModule
   ],
