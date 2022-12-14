@@ -1,6 +1,6 @@
 export enum Specialite {
     IA,
-    RESEAUX,
+    RESEAU,
     CLOUD,
     SECURITE
   }

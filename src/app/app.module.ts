@@ -10,17 +10,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginANDregisterComponent } from './login-andregister/login-andregister.component';
+import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddProjetComponent,
-    //HeaderComponent,
-    LoginComponent,
-    RegisterComponent
+    HeaderComponent,
+    LoginANDregisterComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,10 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     FormsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

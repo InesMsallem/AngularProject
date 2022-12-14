@@ -14,7 +14,7 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
     EtudiantsComponent,
     ListEtudiantComponent,
     MyprofileComponent,
-    HeaderComponent,
+    //HeaderComponent,
     ProfileUserComponent
   ],
   imports: [

@@ -41,4 +41,18 @@ export class ContratService {
   ContractDateIsNear(idContrat: number){
     return this.http.get(this.uri+`/DateContractIsNear/${idContrat}`,this.httpOptions)
   }
+
+  addAndAffectContrat(
+    id: any,
+    data: {
+      dateDebutContrat: Date;
+      dateFinContrat: Date;
+      archive: Boolean;
+      specialite: Specialite;
+      montantContrat: number;
+      descriptionContrat: string;
+    }
+  ) {
+    return this.http.post(this.uri + '/addcontratAndAffectIt/' + id, data,this.httpOptions);
+  }
 }

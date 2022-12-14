@@ -24,6 +24,7 @@ export class MyprofileComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    //console.log(this.currentUser.userLastName);
     //location.reload()
     this.etudiant = new Etudiant();
     this.currentUser = JSON.parse(localStorage.getItem('user') as any);

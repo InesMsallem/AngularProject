@@ -1,5 +1,5 @@
 import { Contrat } from "./Contrat";
-import { Departement } from "./Departement";
+import { Departement } from "./Department";
 import { Equipe } from "./Equipe";
 import { Option } from "./Option";
 
