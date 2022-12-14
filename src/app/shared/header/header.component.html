@@ -55,10 +55,10 @@
             <div class="collapse" id="navbar-Team">
               <ul class="nav nav-sm flex-column">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">List Of Teams</a>
+                  <a href="#" [routerLink]="['/teams']" class="nav-link">List Of Teams</a>
                 </li>
                 <li class="nav-item">
-                  <a [routerLink]="['/app-add-projet']" class="nav-link">Add New Team</a>
+                  <a href="#" [routerLink]="['/teams/add']" class="nav-link">Add New Team</a>
                 </li>
               </ul>
             </div>
@@ -300,8 +300,8 @@
                   <img alt="Image placeholder" src="./assets/img/theme/team-1.jpg" />
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm font-weight-bold">{{this.currentUser.userLastName}}
-                    {{this.currentUser.userFirstName}}</span>
+                  <!-- <span class="mb-0 text-sm font-weight-bold">{{this.currentUser.userLastName}}
+                    {{this.currentUser.userFirstName}}</span> -->
                 </div>
               </div>
             </a>

@@ -1,0 +1,50 @@
+<div id="content" class="p-3">
+    <h1>List teams</h1>
+    <div class="d-flex justify-content-between mb-3">
+        <div>
+            <input [(ngModel)]="search" class="mysearch" placeholder="Search...">
+        </div>
+        <div>
+            <a (click)="goToAdd()" class="btn btn-sm btn-success text-white mr-3">
+                Add team
+            </a>
+            
+            <a class="btn btn-sm btn-warning">
+                Export PDF
+            </a>
+        </div>
+    </div>
+    <table class="table" #content>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th style="width: 18rem;">Description</th>
+                <th style="width: 7rem !important;">action</th>
+            </tr>
+        </thead>
+        <tbody id="content">
+
+            <tr *ngFor="let t of filteredTeams" #content>
+
+                <td>{{t.id}}</td>
+
+                <td>{{t.name}}</td>
+
+                <td>{{t.description}}</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" (click)="goToDelete(t.id)">
+                        Delete
+                    </button>
+                    <a class="btn btn-sm btn-info text-white" (click)="goToUpdate(t.id)">
+                        Update
+                    </a>
+                    &nbsp;
+                </td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+</div>
