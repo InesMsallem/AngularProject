@@ -1,7 +1,7 @@
 <div id="content" class="p-3">
     <h1>Update team</h1>
     <a [routerLink]="['/teams']" class="btn btn-sm btn-warning mb-3">
-        List teams
+        Teams list
     </a>
     <div class="card">
         <div class="card-body">
@@ -14,17 +14,17 @@
             </p>
         </div>  
     </div>
-    <form (ngSubmit)="update()" class="mt-3">
+    <form [formGroup]="teamForm" (ngSubmit)="update()" class="mt-3">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" formControlName="name">
+            <input type="text" class="form-control" id="name" formControlName="name" [value]="team.name">
         </div>
         <div class="form-group">
-            <label for="city">Description</label>
-            <input type="text" class="form-control" id="city" formControlName="city">
+            <label for="desc">Description</label>
+            <input type="text" class="form-control" id="desc" formControlName="desc" [value]="team.description">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-        <button  class="btn btn-warning">Cancel</button>
+        <a [routerLink]="['/teams']" class="btn btn-warning">Cancel</a>
     </form>
 
 </div>

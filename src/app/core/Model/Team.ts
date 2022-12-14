@@ -1,5 +1,5 @@
 export class Team {
     id!: number;
-    name!: String;
-    description!: String;
+    name: string;
+    description!: string;
 }

@@ -1,6 +1,18 @@
 <div id="content" class="p-3">
     <h1>Add team</h1>
     <a [routerLink]="['/teams']" class="btn btn-sm btn-warning mb-3">
-        List teams
+        Teams list
     </a>
+    <form [formGroup]="teamForm" (ngSubmit)="add()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" placeholder="Name..." formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input class="form-control" id="desc" placeholder="Description..." formControlName="desc">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a [routerLink]="['/teams']" class="btn btn-warning">Cancel</a>
+    </form>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from 'src/app/core/Model/Team';
 import { TeamService } from 'src/app/core/services/team.service';
@@ -12,8 +13,17 @@ import { TeamService } from 'src/app/core/services/team.service';
 export class UpdateComponent implements OnInit {
   teamId!: number;
   team!: Team;
+  teamForm = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    desc: ['', [Validators.required, Validators.minLength(10)]]
+  });
 
-  constructor(private teamService: TeamService, private currentRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private teamService: TeamService,
+    private currentRoute: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
     let id = this.currentRoute.snapshot.params['id'];
@@ -30,9 +40,14 @@ export class UpdateComponent implements OnInit {
   }
 
   update() {
-    this.teamService.updateTeam(this.team).subscribe(() => {
-      this.router.navigate(['/teams']);
-    })
+    let name = this.teamForm.get('name')?.value;
+    let description= this.teamForm.get('desc')?.value;
+    console.log(name, description);
+    // let team = new Team();
+    // team.id = this.teamId;
+    // this.teamService.updateTeam(team).subscribe(() => {
+    //   this.router.navigate(['/teams']);
+    // })
   }
 
 }
