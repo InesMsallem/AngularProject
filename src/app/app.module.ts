@@ -17,12 +17,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { reducers, effects } from '@core/store/index';
+import { TeamsComponent } from './teams/teams/teams.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddProjetComponent,
-    HeaderComponent
+    HeaderComponent,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,

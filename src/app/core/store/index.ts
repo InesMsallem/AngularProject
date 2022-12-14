@@ -1,16 +1,16 @@
 import { ActionReducerMap } from '@ngrx/store';
-import * as fromStudent from '@core/store/students/students.reducer';
+import * as fromTeam from '@core/store/teams/teams.reducer';
 
-import * as effectsStudent from '@core/store/students/students.effects';
+import * as teamEffects from '@core/store/teams/teams.effects';
 
 export interface State {
-    students: fromStudent.StudentState;
+    teams: fromTeam.TeamState;
 }
 
-export const reducers: ActionReducerMap<State> = { students: fromStudent.studentReducer };
+export const reducers: ActionReducerMap<State> = { teams: fromTeam.teamReducer };
 
-export const effects: any[] = [effectsStudent.StudentEffects];
+export const effects: any[] = [teamEffects.TeamEffects];
 
-export const getStudents = (state: State) => state.students.students;
-export const getIsLoading = (state: State) => state.students.isLoading;
-export const getIsLoaded = (state: State) => state.students.isLoaded;
+export const getTeams = (state: State) => state.teams.teams;
+export const getIsLoading = (state: State) => state.teams.isLoading;
+export const getIsLoaded = (state: State) => state.teams.isLoaded;
