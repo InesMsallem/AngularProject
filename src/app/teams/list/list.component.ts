@@ -16,17 +16,14 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.teamService.getAll().subscribe(teams => {
-      console.log(teams);
       this.teams = teams;
     })
   }
 
-  public get filteredTeams() : Team[] {
+  public get filteredTeams(): Team[] {
     if (this.search.trim() != '') {
-      let s = this.search.trim().toUpperCase();
-      return this.teams.filter(t => {
-        t.name.toUpperCase().includes(s) || t.description.toUpperCase().includes(s);
-      })
+      let s = this.search.toUpperCase().trim();
+      return this.teams.filter(t => t.name.toUpperCase().includes(s) || t.description.toUpperCase().includes(s));
     }
     return this.teams;
   }
@@ -42,5 +39,13 @@ export class ListComponent implements OnInit {
   goToUpdate(id: any) {
     this.router.navigate(['teams/update', id]);
   }
-  
+
+  goToShowDetail(id: any) {
+    this.router.navigate(['teams/details/show', id]);
+  }
+
+  goToShow(id: any) {
+    this.router.navigate(['teams/show', id]);
+  }
+
 }

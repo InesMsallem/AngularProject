@@ -12,6 +12,12 @@
             <label for="desc">Description</label>
             <input class="form-control" id="desc" placeholder="Description..." formControlName="desc">
         </div>
+        <div *ngIf="details" class="form-group">
+            <label for="detail">Detail</label>
+            <select class="form-control" id="detail" formControlName="detail" placeholder="Detail...">
+                <option *ngFor="let detail of details" [value]="detail.id">{{detail.name}}</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a [routerLink]="['/teams']" class="btn btn-warning">Cancel</a>
     </form>
